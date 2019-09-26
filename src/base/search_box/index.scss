@@ -1,0 +1,31 @@
+@import "~common/scss/variable.scss";
+
+.search-box {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  .search-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+  }
+  input {
+    text-indent: 20px;
+    font-size: 12px;
+    height: 20px;
+    width: 100%;
+    line-height: 20px;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    outline: none;
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    color: $color-text;
+    background-color: $color-background;
+  }
+}

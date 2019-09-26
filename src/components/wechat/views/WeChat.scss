@@ -1,0 +1,32 @@
+.wechat {
+  width: 900px;
+  min-width: 600px;
+  height: 700px;
+  min-height: 500px;
+  border-radius: 5px;
+  border: solid 1px #444;
+  overflow: hidden;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  .left-wrapper {
+    width: 80px;
+    height: 100%;
+    flex: 0 0 auto;
+  }
+  .middle-wrapper {
+    width: 250px;
+    height: 100%;
+    flex: 0 0 auto;
+    background-color: white;
+    border-right: 1px solid #ccc;
+  }
+  .right-wrapper {
+    width: 470px;
+    height: 100%;
+    flex: 1 1 auto;
+    background-color: white;
+  }
+}

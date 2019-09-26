@@ -1,0 +1,26 @@
+@import "~common/scss/variable.scss";
+@import "~common/scss/mixin.scss";
+
+.single-contact {
+  height: 34px;
+  width: 100%;
+  display: flex;
+  .avatar-wrapper {
+    background-size: cover;
+    height: 100%;
+    width: 34px;
+    flex: 0 0 auto;
+    border-radius: 2px;
+  }
+  .name-wrapper {
+    height: 100%;
+    line-height: 34px;
+    font-size: 15px;
+    color: $color-text-s;
+    width: 100%;
+    margin-left: 10px;
+    flex: 1 1 auto;
+    text-align: left;
+    @include no-wrap();
+  }
+}

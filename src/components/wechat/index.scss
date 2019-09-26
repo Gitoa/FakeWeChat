@@ -1,0 +1,42 @@
+@import "~common/scss/variable.scss";
+
+.wechat {
+  width: 900px;
+  min-width: 600px;
+  height: 645px;
+  min-height: 500px;
+  border-radius: 5px;
+  border: solid 1px #444;
+  overflow: hidden;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  .left-wrapper {
+    width: 66px;
+    height: 100%;
+    flex: 0 0 auto;
+  }
+  .middle-wrapper {
+    width: 280px;
+    height: 100%;
+    flex: 0 0 auto;
+    padding-left: 15px;
+    background-color: $color-background-m;
+    border-right: 1px solid #ccc;
+    .header-wrapper {
+      padding-right: 15px;
+    }
+    .content-wrapper {
+      height: calc(100% - 60px);
+      overflow: hidden;
+    }
+  }
+  .right-wrapper {
+    width: 470px;
+    height: 100%;
+    flex: 1 1 auto;
+    background-color: white;
+  }
+}

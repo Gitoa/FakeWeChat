@@ -1,0 +1,50 @@
+@import "~common/scss/variable.scss";
+
+.list-with-tag {
+  width: 100%;
+  height: auto;
+  display: flex;
+  .arrow-tag {
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    text-align: left;
+    color: $color-text-m;
+    flex: 0 0 auto;
+  }
+  .list-wrapper {
+    
+    height: auto;
+    flex: 1 1 auto;
+    .tag {
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+      text-align: left;
+    }
+    .list {
+      &.hide {
+        display: none;
+      }
+      &>li {
+        padding: 12px 15px 12px 0;
+      }
+      &>li.cluster-wrapper {
+        padding: 15px 0;
+        .cluster-letter {
+          text-align: left;
+          padding: 10px 0;
+          color: $color-text-m;
+          font-size: 12px;
+          border-bottom: solid 1px $color-text-g;
+        }
+        ul {
+          li {
+            padding: 12px 0;
+          }
+        }
+      }
+    }
+  }
+}

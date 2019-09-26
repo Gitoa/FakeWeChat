@@ -1,0 +1,41 @@
+@import "~common/scss/variable.scss";
+@import "~common/scss/mixin.scss";
+
+.single-record {
+  height: 34px;
+  width: 100%;
+  display: flex;
+  .avatar-wrapper {
+    height: 100%;
+    width: 34px;
+    background-size: cover;
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+  .info-wrapper {
+    height: 100%;
+    width: 100%;
+    flex: 1 1 auto;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title-wrapper {
+      vertical-align: bottom;
+      width: 100%;
+      display: flex;
+      font-size: 13px;
+      justify-content: space-between;
+      .status {
+        color: $color-text-m;
+      }
+    }
+    .attach-msg {
+      width: 100%;
+      text-align: left;
+      font-size: 13px;
+      color: $color-text-m;
+      vertical-align: top;
+    }
+  }
+}

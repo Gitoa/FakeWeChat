@@ -1,0 +1,99 @@
+@import "~common/scss/variable.scss";
+@import "~common/scss/mixin.scss";
+
+.info-card {
+  height: 100%;
+  width: 100%;
+  padding: 60px 50px 0 50px;
+  .title-wrapper {
+    height: 90px;
+    width: 100%;
+    border-bottom: solid $color-text-g 1px;
+    display: flex;
+    justify-content: space-between;
+    .base-info {
+      flex: 1 1 auto;
+      height: 70px;
+      text-align: left;
+      .name {
+        color: $color-text;
+        font-size: $font-size-xxl;
+        @include no-wrap();
+      }
+      .gender-icon {
+        margin-left: 10px;
+      }
+      .slogan {
+        text-align: left;
+        color: $color-text-m;
+        @include no-wrap();
+      }
+    }
+    .avatar-wrapper {
+      height: 70px;
+      width: 70px;
+      background-size: cover;
+      border-radius: 5px;
+    }
+  }
+  .info-wrapper {
+    margin-top: 20px;
+    margin-bottom: 80px;
+    text-align: left;
+    @include no-wrap();
+    li {
+      padding: 10px 0;
+      span:first-child {
+        display: inline-block;
+        width: 50px;
+        text-align: justify;
+        color: $color-text-m;
+      }
+      span:last-child {
+        margin-left: 30px;
+        text-align: left;
+        color: $color-text;
+      }
+    }
+  }
+  .attach-msg {
+    border-top: solid $color-text-g 1px;
+    padding-top: 30px;
+    text-align: left;
+    span:first-child {
+      display: inline-block;
+      width: 50px;
+      text-align: justify;
+      color: $color-text-m;
+    }
+    span:last-child {
+      margin-left: 30px;
+      text-align: left;
+      color: $color-text;
+    }
+    margin-bottom: 80px;
+  }
+  .button-wrapper {
+    display: flex;
+    justify-content: space-around;
+    p {
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 5px;
+      color: white;
+    }
+    .chat-button {
+      margin-left: 50px;
+      background-color: rgb(4, 177, 119);
+    }
+    .delete-button {
+      margin-right: 50px;
+      background-color: rgb(199, 3, 35);
+    }
+    .confirm-button {
+      background-color: rgb(4, 177, 119);
+    }
+  }
+}

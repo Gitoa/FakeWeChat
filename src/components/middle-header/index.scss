@@ -1,0 +1,24 @@
+@import "~common/scss/variable.scss";
+
+.middle-header {
+  height: 70px;
+  width: 100%;
+  padding: 20px 0 30px 0;
+  display: flex;
+  .search-box-wrapper {
+    float: left;
+    width: 189px;
+    flex: 1 1 auto;
+  }
+  .add-button-wrapper {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+    color: $color-text-m;
+    background-color: white;
+    border: 1px #ccc solid;
+    border-radius: 5px;
+    flex: 0 0 auto;
+  }
+}
