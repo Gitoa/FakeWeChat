@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var config = {
-    port: 3080,
+    port: 3050,
     database: {
         DATABASE: 'fakesql',
         USERNAME: 'root',

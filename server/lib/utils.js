@@ -110,6 +110,7 @@ function initSocket(io) {
                 });
             }); });
             socket.on('msg', function (msg, cb) {
+                console.log(msg);
                 sendMsg(msg);
                 if (typeof cb === 'function') {
                     cb(null);
@@ -231,6 +232,7 @@ function deleteFriendDispatch(msg) {
 var dealOpt = function (msg) {
     switch (msg.actionType) {
         case 'addFriend':
+            console.log(msg);
             addFriendDispatch(msg);
             return sql.addFriend(msg.userId, msg.targetId, formatDate(new Date()));
         case 'deleteFriend':

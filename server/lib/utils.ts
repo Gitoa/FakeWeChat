@@ -45,6 +45,7 @@ function initSocket(io: SocketIO.Server): void {
       }
     })
     socket.on('msg', (msg, cb) => {
+      console.log(msg);
       sendMsg(msg);
       if(typeof cb === 'function') {
         cb(null);
@@ -169,6 +170,7 @@ function deleteFriendDispatch(msg) {
 const dealOpt = function(msg: OptMsg) {
   switch(msg.actionType) {
     case 'addFriend':
+      console.log(msg);
       addFriendDispatch(msg);
       return sql.addFriend(msg.userId, msg.targetId, formatDate(new Date()));
     case 'deleteFriend':

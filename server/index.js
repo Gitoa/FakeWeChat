@@ -32,6 +32,6 @@ app.use('/', signin_1["default"]);
 app.use('/', signup_1["default"]);
 app.use('/', api_1["default"]);
 app.use('/', logout_1["default"]);
-server.listen(3080, function () {
-    console.log('listen on port 3080');
+server.listen(3050, function () {
+    console.log('listen on port 3050');
 });

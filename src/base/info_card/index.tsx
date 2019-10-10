@@ -52,7 +52,7 @@ function InfoCard(props: InfoCardProps) {
           <span className='name'>{name}</span><span className='gender-icon' style={{ color: props.gender === 'boy' ? 'blue' : 'red' }}></span>
           <p className='slogan'>{props.slogan}</p>
         </div>
-        <div className='avatar-wrapper' style={{ backgroundImage: props.avatar ? `url(http://localhost:3080${props.avatar})` : 'url(http://gitoa.top:3050/static/img/default.jpg)' }}></div>
+        <div className='avatar-wrapper' style={{ backgroundImage: props.avatar ? `url(${props.avatar})` : 'url(http://gitoa.top:3050/static/img/default.jpg)' }}></div>
       </div>
       <ul className='info-wrapper' style={{ marginBottom: unhandleRecord ? '20px' : '80px' }}>
         { props.location ?  (<li><span>{'地区'}</span><span>{props.location}</span></li>) : '' }

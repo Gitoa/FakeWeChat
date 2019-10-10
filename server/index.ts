@@ -37,6 +37,6 @@ app.use('/', signupRouter);
 app.use('/', apiRouter);
 app.use('/', logoutRouter);
 
-server.listen(3080, () => {
-  console.log('listen on port 3080');
+server.listen(3050, () => {
+  console.log('listen on port 3050');
 })

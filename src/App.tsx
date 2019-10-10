@@ -96,7 +96,7 @@ const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    socketContainer.socket = io.connect('http://localhost:3080');
+    socketContainer.socket = io.connect('http://gitoa.top:3050');
     socketContainer.socket.on('connect_confirm', (data: string) => {
       (socketContainer.socket as SocketIOClient.Socket).emit('config_init', {'userId': adminState.id})
     })

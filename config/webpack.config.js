@@ -225,6 +225,7 @@ module.exports = function(webpackEnv) {
               // https://github.com/facebook/create-react-app/issues/5250
               // Pending further investigation:
               // https://github.com/terser-js/terser/issues/120
+              drop_console: true,
               inline: 2,
             },
             mangle: {

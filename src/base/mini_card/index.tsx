@@ -83,7 +83,7 @@ function MiniCard(props: MiniCardProps) {
           <p className='name'>{ props.name }</p>
           <p className='wechatId'><span>{'账号: '}</span>{ props.wechatId ? props.wechatId : props.id }</p>
         </div>
-        <div className='avatar-wrapper' style={{backgroundImage: props.avatar ? `url(http://localhost:3080${props.avatar})` : 'url(http://gitoa.top:3050/static/img/default.jpg)'}}></div>
+        <div className='avatar-wrapper' style={{backgroundImage: props.avatar ? `url(${props.avatar})` : 'url(http://gitoa.top:3050/static/img/default.jpg)'}}></div>
       </div>
       <div className='bottom-wrapper'>
         {

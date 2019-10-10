@@ -1,22 +1,26 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import loadable from '@loadable/component';
 import { NavBarData } from 'common/js/config';
 import NavBar from 'components/nav_bar';
 import MiddleHeader from 'components/middle_header';
 import NewsList from 'components/news_list';
 import Contact from 'components/contact';
 import NewsChat from 'components/news_chat';
-import StrangerChat from 'components/stranger_chat';
-import ContactCard from 'components/contact_card';
+//import ContactCard from 'components/contact_card';
 import { getLocalNews, getMockNewsList } from 'common/js/cache';
 import MiniCard from 'base/mini_card';
-import OnlineSearchBox from 'base/online_search_box';
-import Mask from 'base/Mask';
+//import OnlineSearchBox from 'base/online_search_box';
 import { Context as MiniCardContext } from 'store/mini_card';
 import { changeMiniCard } from 'store/mini_card/action';
 import { initState as initMiniCard } from 'store/mini_card/reducer';
 
 import './index.scss';
+
+const StrangerChat = loadable(() => import('components/stranger_chat'));
+const Mask = loadable(() => import('base/Mask'));
+const OnlineSearchBox = loadable(() => import('base/online_search_box'));
+const ContactCard = loadable(() => import('components/contact_card'));
 
 function WeChat () {
   const [ keyword, setKeyword ] = useState('');

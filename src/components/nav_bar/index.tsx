@@ -23,7 +23,7 @@ function NavBar(props: {navItem: NavBarItem[]}) {
 
   return (
     <div className='nav-bar'>
-      <div className='avatar-wrapper' style={{backgroundImage: admin.avatar?`url(http://localhost:3080${admin.avatar})`:'url(http://localhost:3080/static/img/default.jpg)'}}>
+      <div className='avatar-wrapper' style={{backgroundImage: admin.avatar?`url(${admin.avatar})`:'url(/static/img/default.jpg)'}}>
       </div>
       <div className='nav-wrapper'>
         {

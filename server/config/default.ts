@@ -1,5 +1,5 @@
 const config = {
-  port: 3080,
+  port: 3050,
   database: {
     DATABASE: 'fakesql',
     USERNAME: 'root',

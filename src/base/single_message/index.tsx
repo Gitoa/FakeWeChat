@@ -29,7 +29,7 @@ function SingleMessage(props: SingleMessageProps) {
   
   return (
     <div className={props.fromMe?'single-message from-me': 'single-message from-others'}>
-      <div className='avatar' style={{backgroundImage: props.senderAvatar ? `url(http://localhost:3080${props.senderAvatar})` : 'url(http://localhost/3080/static/img/default.jpg)'}}></div>
+      <div className='avatar' style={{backgroundImage: props.senderAvatar ? `url(${props.senderAvatar})` : 'url(/static/img/default.jpg)'}}></div>
       <div className='info-wrapper'>
         {
           props.fromMe ? '' : <p className='name'>{ props.senderName }</p>

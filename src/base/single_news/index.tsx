@@ -16,7 +16,7 @@ function SingleNews(props: NewsProps){
 
   return (
     <div className='single-news'>
-      <div className='avatar-wrapper' style={{backgroundImage: props.avatar?`url(http://localhost:3080${props.avatar})`:'url(http://gitoa.top:3050/static/img/default.jpg)'}}>
+      <div className='avatar-wrapper' style={{backgroundImage: props.avatar?`url(${props.avatar})`:'url(http://gitoa.top:3050/static/img/default.jpg)'}}>
       </div>
       <div className='info-wrapper'>
         <div className='title-wrapper'>
