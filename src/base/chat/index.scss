@@ -1,0 +1,77 @@
+@import '~common/scss/variable.scss';
+
+.chat {
+  height: 100%;
+  width: 100%;
+  &.hide {
+    display: none;
+  }
+  display: flex;
+  flex-direction: column;
+  .chat-header {
+    height: 70px;
+    width: 100%;
+    padding:20px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-text-g;
+    .name {
+      line-height: 30px;
+      font-size: $font-size-xl;
+      color: $color-text;
+    }
+    .icon {
+      line-height: 30px;
+      i {
+        font-size: $font-size-xxxl;
+        color: $color-text-m;
+      }
+    }
+  }
+  .chat-content {
+    width: 100%;
+    flex: 1 1 auto;
+    padding: 0 20px;
+    overflow-y: auto;
+    ul {
+      li {
+        height: auto;
+        padding: 10px 0;
+        &.from-me {
+          padding-left: 25%;
+        }
+        &.from-others {
+          padding-right: 25%;
+        }
+      }
+    }
+  }
+  .chat-input {
+    height: 129px;
+    width: 100%;
+    flex: 0 0 auto;
+    border-top: solid 1px $color-text-g;
+    padding: 10px 15px;
+    textarea {
+      height: 100%;
+      width: 100%;
+      font-size: $font-size-m;
+      outline: none;
+      border: none;
+      background-color: inherit;
+      resize: none;
+    }
+  }
+  .information-wrapper {
+    position: absolute;
+    width: 200px;
+    height: calc(100% - 70px);
+    top: 70px;
+    right: 0;
+    background-color: $color-background-alpha;
+    &.hide {
+      display: none;
+    }
+  }
+}

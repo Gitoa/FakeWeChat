@@ -23,7 +23,7 @@
     height: 100%;
     flex: 0 0 auto;
     padding-left: 15px;
-    background-color: $color-background-m;
+    background-color: $color-background-s;
     border-right: 1px solid #ccc;
     .header-wrapper {
       padding-right: 15px;
@@ -31,12 +31,24 @@
     .content-wrapper {
       height: calc(100% - 60px);
       overflow: hidden;
+      overflow-y: auto;
+      position: relative;
     }
   }
   .right-wrapper {
     width: 470px;
     height: 100%;
     flex: 1 1 auto;
-    background-color: white;
+    background-color: $color-background;
+  }
+  .mini-card-wrapper {
+    &.hide {
+      display: none;
+    }
+  }
+  .online-search-box-wrapper {
+    &.hide {
+      display: none;
+    }
   }
 }

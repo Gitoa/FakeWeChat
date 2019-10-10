@@ -1,0 +1,1 @@
+export const MINI_CARD_CHANGE = 'MINI_CARD/CHANGE';

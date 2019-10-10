@@ -1,10 +1,14 @@
 import React from 'react';
-import FriendList from 'components/friend-list';
-import GroupList from 'components/group-list';
-import RecordList from 'components/record-list';
+import FriendList from 'components/friend_list';
+import GroupList from 'components/group_list';
+import RecordList from 'components/record_list';
 import './index.scss';
 
-function Contact() {
+interface ContactProps {
+  keyword?: string;
+}
+
+function Contact(props: ContactProps) {
 
   return (
     <div className='contact'>
@@ -12,10 +16,10 @@ function Contact() {
         <RecordList></RecordList>
       </div>
       <div className='friend-list-wrapper'>
-        <FriendList></FriendList>
+        <FriendList keyword={props.keyword}></FriendList>
       </div>
       <div className='group-list-wrapper'>
-        <GroupList></GroupList>
+        <GroupList keyword={props.keyword}></GroupList>
       </div>  
     </div>
   )

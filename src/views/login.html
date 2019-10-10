@@ -1,0 +1,221 @@
+<html>
+  <head>
+    <title>登录/注册</title>
+    <meta charset='utf-8'>
+    <style>
+      body {
+        margin: 0;
+      }
+      .wrapper {
+        height: 100%;
+        width: 100%;
+        min-width: 900px;
+        min-height: 500px;
+        background: url('http://gitoa.top:3050/static/img/bgimg.jpeg') 0% 0% / cover;
+        position: relative;
+      }
+      .wrapper::after {
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        filter: blur(0.1px);
+        -webkit-filter: blur(0.1px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: inherit;
+        z-index: 9;
+      }
+      #main {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -200px;
+        margin-top: -300px;
+        width: 400px;
+        height: 600px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        z-index: 99;
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .avatar {
+        margin-top: 30px;
+        display: inline-block;
+        background: url('http://gitoa.top:3050/static/img/default.jpg') 0% / cover;
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        border: solid 1px #ccc;
+      }
+      .hide {
+        display: none;
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      form {
+        margin-top: 65px;
+        text-align: center;
+      }
+      form input {
+        font-size: 18px;
+        line-height: 30px;
+        -webkit-appearance:none;
+        -moz-appearance: none;
+        outline: none;
+        background: transparent;
+        width: 60%;
+        margin-bottom: 50px;
+        border: none;
+        border-bottom: 1px solid #555;
+      }
+      form p {
+        width: 50px;
+        height: 20px;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 5 10px;
+        line-height: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 30px auto 60px auto;
+        text-align: center;
+      }
+      p a {
+        color: rgb(33, 33, 211);
+        cursor: pointer;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class='wrapper'>
+      <div id='main'>
+        <div class='avatar'></div>
+        <form class='signin' action='/signin'>
+          <input class='username' type='text' placeholder='用户名' name='name'><br/>
+          <input class='password' type='password' placeholder='密码' name='password'><br/>
+          <p class='submit'>submit</p>
+        </form>
+        <p class='signin'>没有账户？请<a class='change-to-signup'>注册</a></p>
+        <form class='signup hide' action='/signup'>
+          <input class='username' type='text' placeholder='用户名' name='name'><br/>
+          <input class='password' type='password' placeholder='密码' name='password'><br/>
+          <input type='password' placeholder='重复密码' class='repeatPassword' name='repeatPassword'><br/>
+          <p class='submit'>submit</p>
+        </form>
+        <p class='signup hide'>已有账户？请<a class='change-to-signin'>登录</a></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    window.onload = function() {
+      let signin = document.querySelector('.signin .submit');
+      let signup = document.querySelector('.signup .submit');
+      let changeToSignin = document.querySelector('.change-to-signin');
+      let changeToSignup = document.querySelector('.change-to-signup');
+      let signinForm = document.querySelector('form.signin');
+      let signupForm = document.querySelector('form.signup');
+      let signinP = document.querySelector('p.signin');
+      let signupP = document.querySelector('p.signup');
+
+      signin.addEventListener('click', () => {
+        let name = document.querySelector('.signin .username').value;
+        let password = document.querySelector('.signin .password').value;
+        if (name.trim() === '') {
+          console.log('用户名为空');
+          alert('用户名不应为空');
+          return;
+        }
+        //发送表单
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 304 || (xhr.status >= 200 && xhr.status < 300)) {
+              //根据返回信息判断登录是否成功
+              let ack = JSON.parse(xhr.responseText);
+              if (ack.result) {
+                console.log('登录成功');
+                //接下来进行页面跳转
+                window.location.href= '/';
+              } else {
+                console.log('登录失败:', ack.msg);
+                alert( `登录失败,${ack.msg}`);
+              }
+              //页面跳转
+            } else {
+              alert('登录失败');
+            }
+          }
+        }
+        xhr.open('post', '/signin', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+          name,
+          password,
+        }))
+      }, false)
+      signup.addEventListener('click', () => {
+        let user = document.querySelector('.signup .username').value;
+        if (user.trim() === '') {
+          console.log('用户名为空');
+          alert('用户名不能为空');
+          return
+        }
+        //对密码判断，长度，两次输入是否一致
+        let password = document.querySelector('.signup .password').value;
+        let repeatPassword = document.querySelector('.signup .repeatPassword').value;
+        if (password.length < 5 || password.length > 20) {
+          console.log('密码长度问题');
+          alert('密码应大于5位小于20位');
+          return
+        }
+        if (password !== repeatPassword) {
+          console.log('两次输入不一致');
+          alert('两次输入的密码不一致')
+          return
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+              //根据后台返回结果判断
+              console.log(xhr.responseText);
+              let ack = JSON.parse(xhr.responseText);
+              if (ack.code === 1) {
+                alert('注册成功');
+              } else {
+                alert(`注册失败,${ack.msg}`)
+              }  
+            } else {
+              alert('注册失败');
+            }
+          }
+        }
+        xhr.open('post', '/signup', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+          name: user,
+          password,
+        }))
+      }, false)
+
+      changeToSignin.addEventListener('click', () => {
+        signinForm.classList.remove('hide');
+        signinP.classList.remove('hide');
+        signupForm.classList.add('hide');
+        signupP.classList.add('hide');
+      })
+
+      changeToSignup.addEventListener('click', () => {
+        signupForm.classList.remove('hide');
+        signupP.classList.remove('hide');
+        signinForm.classList.add('hide');
+        signinP.classList.add('hide');
+      })
+    }
+  </script>
+</html>

@@ -1,0 +1,45 @@
+@import "~common/scss/variable.scss";
+
+.online-search-box {
+  position: absolute;
+  width: 300px;
+  min-height: 400px;
+  max-height: 700px;
+  overflow-y: auto;
+  left: 206px;
+  top: 60px;
+  background-color: $color-background-m;
+  padding: 20px 20px 0;
+  border: solid 1px #ccc;
+  border-top: none;
+  text-align: left;
+  color: $color-text;
+  font-size: $font-size-m;
+  z-index: 999;
+  .search-box-wrapper {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .online-search-result {
+    margin-top: 20px;
+    .user-result {
+      margin: 10px 0;
+      li {
+        padding: 5px 0;
+      }
+      &>p {
+        text-align: center;
+      }
+    }
+    .group-result {
+      margin: 10px 0;
+      li {
+        padding: 5px 0;
+      }
+      &>p {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -14,9 +14,8 @@ const reducer = (state: User[], action: Action): User[] => {
   switch(type) {
     case ActionTypes.FRIEND_ADD:
       let userId = (action.user as User).id;
-      index = state.findIndex(item => item.id === userId)
-      index > -1 && newState.splice(index, 1);
-      newState.push((action.user as User));
+      index = state.findIndex(item => item.id === userId);
+      index === -1 && newState.push((action.user as User));
       return newState;
     case ActionTypes.FRIEND_DELETE:
       index = state.findIndex(item => item.id === userId)

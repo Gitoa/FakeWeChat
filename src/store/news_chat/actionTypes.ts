@@ -1,0 +1,1 @@
+export const CHANGE_NEWS_CHAT = 'NEWS_CHAT/CHANGE';

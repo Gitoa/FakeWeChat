@@ -8,7 +8,7 @@ export interface Action {
   userId?: string;
 }
 
-export const delFriend = (id: string) => {
+export const deleteFriend = (id: string) => {
   return {
     type: ActionTypes.FRIEND_DELETE,
     delId: id,

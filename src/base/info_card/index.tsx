@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './index.scss';
+import { Context } from 'store/news_chat';
+import { changeNewsChat } from 'store/news_chat/action';
+import { useHistory } from "react-router-dom";
+import { Context as NewsListContext } from 'store/news_list';
+import { addNews } from 'store/news_list/action';
 
 export interface InfoCardProps {
-  name?: string;
+  id: string;
+  name: string;
   avatar?: string;
   gender?: 'boy'|'girl';
   source?: string;
@@ -11,7 +17,7 @@ export interface InfoCardProps {
   slogan?: string;
   creator?: string;
   operation: string;
-  type: string;
+  type: 'group' | 'private' | 'stranger' | 'record';
   handled?: boolean;
   attachMsg?: string;
   sendByMe?: boolean;
@@ -20,20 +26,33 @@ export interface InfoCardProps {
 }
 
 function InfoCard(props: InfoCardProps) {
+
+  const { dispatch } = useContext(Context);
+
+  const { dispatch: newsListDispatch } = useContext(NewsListContext);
+
+  const history = useHistory();
+
+  function startChat() {
+    newsListDispatch(addNews({name: props.name, type: (props.type as 'private'|'group'), id: props.id, avatar: props.avatar}));
+    dispatch(changeNewsChat({name: props.name, type: (props.type as 'private'|'group'), id: props.id, avatar: props.avatar}));
+    history.push('/news')
+  }
+
   let name = props.name;
   if(props.type === 'record') {
-    name = (props.sendByMe ? props.receiverName : props.senderName);
+    name = (props.sendByMe ? props.receiverName : props.senderName) as string;
   }
-  let unhandleRecord = (props.type === 'record' && !props.handled)
+  let unhandleRecord = (props.type === 'record' && !props.handled);
 
   return (
     <div className='info-card'>
       <div className='title-wrapper'>
         <div className='base-info'>
-          <span className='name'>{name}</span><span className='gender-icon' style={{ color: props.gender === 'boy' ? 'blue' : 'red' }}>{props.gender || 'boy' }</span>
+          <span className='name'>{name}</span><span className='gender-icon' style={{ color: props.gender === 'boy' ? 'blue' : 'red' }}></span>
           <p className='slogan'>{props.slogan}</p>
         </div>
-        <div className='avatar-wrapper' style={{ backgroundImage: props.avatar ? `url(${props.avatar})` : 'url(http://gitoa.top:3050/static/img/default.jpg)' }}></div>
+        <div className='avatar-wrapper' style={{ backgroundImage: props.avatar ? `url(http://localhost:3080${props.avatar})` : 'url(http://gitoa.top:3050/static/img/default.jpg)' }}></div>
       </div>
       <ul className='info-wrapper' style={{ marginBottom: unhandleRecord ? '20px' : '80px' }}>
         { props.location ?  (<li><span>{'地区'}</span><span>{props.location}</span></li>) : '' }
@@ -46,12 +65,12 @@ function InfoCard(props: InfoCardProps) {
       }
       {
         unhandleRecord ? 
-          <div className='button-wrapper'>
+          <div className={`button-wrapper ${props.id === '-1' ? 'hide' : ''}`}>
             <p className='confirm-button'>{'通过验证'}</p>
           </div>
             : 
-          <div className='button-wrapper'>
-            <p className='chat-button'>{'发送消息'}</p>
+          <div className={`button-wrapper ${props.id === '-1' ? 'hide' : ''}`}>
+            <p className='chat-button' onClick={startChat}>{'发送消息'}</p>
             <p className='delete-button'>{props.operation}</p>
           </div>
       }   

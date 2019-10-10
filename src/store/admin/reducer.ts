@@ -3,8 +3,8 @@ import { Admin } from 'common/js/interfaces';
 export const initState: Admin = {
   id: '-1',
   name: 'admin',
-  avatar: 'http://gitoa.top:3050/static/img/default.jpg',
-  type: 'user',
+  avatar: '/static/img/default.jpg',
+  type: 'private',
 }
 
 const reducer = (state: Admin, action: {type: string, admin: Admin}): Admin => {

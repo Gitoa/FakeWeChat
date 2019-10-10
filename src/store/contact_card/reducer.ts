@@ -4,8 +4,8 @@ import * as ActionTypes from './actionTypes';
 
 export const initState: User|Group|ApplyRecord = {
   id: '-1',
-  name: 'admin',
-  type: 'user',
+  name: '',
+  type: 'private',
 };
 
 function reducer(state: User|Group|ApplyRecord, action: Action): User|Group|ApplyRecord {

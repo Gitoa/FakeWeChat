@@ -20,7 +20,7 @@ const reducer = (state: NewsProps[], action: Action): NewsProps[] => {
 
     case ActionTypes.NEWS_ADD:
       let addNews = (<NewsProps>action.news);
-      let index = newState.findIndex(news => news.id === addNews.id)
+      let index = newState.findIndex(news => news.type === addNews.type && news.id === addNews.id)
       index > -1 && newState.splice(index, 1);
       newState.unshift(addNews);
       return newState;

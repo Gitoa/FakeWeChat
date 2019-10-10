@@ -1,0 +1,72 @@
+@import "~common/scss/variable";
+
+.mini-card {
+  min-height: 200px;
+  width: 300px;
+  border-radius: 10px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: $color-background-m;
+  z-index: 9999;
+  border: solid 1px #ccc;
+  .top-wrapper {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    .base-info {
+      flex: 1 1 auto;
+      text-align: left;
+      margin-right: 10px;
+      .name {
+        font-size: $font-size-xl;
+        color: $color-text;
+        margin-bottom: 20px;
+      }
+      .wechatId {
+        font-size: $font-size-l;
+        color: $color-text-m;
+      }
+    }
+    .avatar-wrapper {
+      flex: 0 0 auto;
+      height: 60px;
+      width: 60px;
+      border-radius: 5px;
+      background-size: cover;
+    }
+  }
+  .bottom-wrapper {
+    margin-top: 20px;
+    .tag {
+      width: 100%;
+      text-align: left;
+      span:first-child {
+        display: inline-block;
+        width: 45px;
+        margin-right: 40px;
+        font-size: $font-size-l;
+        color: $color-text-m;
+        text-align: justify;
+        &:after {
+          content: '';
+          height: 0;
+          display: inline-block;
+          overflow: hidden;
+          width: 100%;
+        }
+      }
+      span:last-child {
+        font-size: $font-size-l;
+        color: $color-text;
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+  }
+  .operation {
+    margin-top: 15px;
+    cursor: pointer;
+  }
+}

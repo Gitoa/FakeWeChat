@@ -4,16 +4,15 @@
 .info-card {
   height: 100%;
   width: 100%;
-  padding: 60px 50px 0 50px;
   .title-wrapper {
-    height: 90px;
+    height: 85px;
     width: 100%;
     border-bottom: solid $color-text-g 1px;
     display: flex;
     justify-content: space-between;
     .base-info {
       flex: 1 1 auto;
-      height: 70px;
+      height: 65px;
       text-align: left;
       .name {
         color: $color-text;
@@ -26,12 +25,14 @@
       .slogan {
         text-align: left;
         color: $color-text-m;
+        font-size: $font-size-l;
+        margin-top: 10px;
         @include no-wrap();
       }
     }
     .avatar-wrapper {
-      height: 70px;
-      width: 70px;
+      height: 65px;
+      width: 65px;
       background-size: cover;
       border-radius: 5px;
     }
@@ -76,6 +77,9 @@
   .button-wrapper {
     display: flex;
     justify-content: space-around;
+    &.hide {
+      display: none;
+    }
     p {
       width: 120px;
       height: 40px;
@@ -85,15 +89,15 @@
       color: white;
     }
     .chat-button {
-      margin-left: 50px;
-      background-color: rgb(4, 177, 119);
+      margin-left: 0px;
+      background-color: rgba(4, 177, 119, 0.7);
     }
     .delete-button {
-      margin-right: 50px;
-      background-color: rgb(199, 3, 35);
+      margin-right: 0px;
+      background-color: rgba(199, 3, 35, 0.7);
     }
     .confirm-button {
-      background-color: rgb(4, 177, 119);
+      background-color: rgba(4, 177, 119, 0.7);
     }
   }
 }

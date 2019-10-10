@@ -1,0 +1,7 @@
+export const MESSAGES_ADD = 'MESSAGES/ADD';
+
+export const MESSAGES_INIT = 'MESSAGES/INIT';
+
+export const MESSAGES_DELETE = 'MESSAGES/DELETE';
+
+export const MESSAGES_CLEAR = 'MESSAGES/CLEAR';

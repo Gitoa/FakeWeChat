@@ -10,7 +10,7 @@ export interface User {
   source?: string;
   gender?: 'boy'|'girl';
   wechatId?: string;
-  type: 'user';
+  type: 'private' | 'stranger';
 }
 
 export interface Admin extends User {
@@ -27,6 +27,7 @@ export interface Group {
 }
 
 export interface ApplyRecord {
+  name: string;
   applyType: string;
   attachMsg: string;
   time: string;
@@ -48,4 +49,12 @@ export interface ApplyRecord {
 
 export interface ProviderProps {
   readonly children: JSX.Element;
+}
+
+export interface OptMsg {
+  actionType: 'addFriend' | 'deleteFriend';
+  
+  senderId: string;
+  senderName: string;
+  senderAvatar?: string;
 }

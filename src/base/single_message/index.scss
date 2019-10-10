@@ -1,0 +1,59 @@
+@import "~common/scss/variable.scss";
+
+.single-message {
+  height: auto;
+  width: 100%;
+  display: flex;
+  .avatar {
+    height: 34px;
+    width: 34px;
+    border-radius: 2px;
+    background-size: cover;
+    flex: 0 0 auto;
+  }
+  .info-wrapper {
+    .name {
+      color: $color-text-m;
+      font-size: $font-size-s;
+      margin-bottom: 5px;
+    }
+    .content {
+      box-sizing: border-box;
+      border-radius: 3px;
+      width: auto;
+      border: solid #ccc 1px;
+      background-color: rgba(255, 255, 255, 0.8);
+      min-height: 34px;
+      line-height: 32px;
+      padding: 0 10px;
+      font-size: $font-size-m;
+    }
+  }
+  &.from-me {
+    justify-content: flex-end;
+    .avatar {
+      order: 2;
+      margin-left: 5px;
+    }
+    .info-wrapper {
+      order: 1;
+      .name {
+        text-align: right;
+      }
+      .content {
+        background-color: rgb(81, 204, 81);
+      }
+    }
+  }
+  &.from-others {
+    justify-content: flex-start;
+    .avatar {
+      margin-right: 5px;
+    }
+    .info-wrapper {
+      .name {
+        text-align: left;
+      }
+    }
+  }
+}

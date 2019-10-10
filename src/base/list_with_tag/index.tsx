@@ -16,6 +16,8 @@ export interface ListWithTagProps {
   list: listItem[],
   clustering?: true;
   clickAction: (value: any)=> void;
+  liStyle?: {};
+  showBorder?: boolean;
 }
 
 const letterPattern = new RegExp('[A-Za-z]');
@@ -29,6 +31,11 @@ function ListWithTag(props: ListWithTagProps) {
   const clusteringList = new Map<string, listItem[]>();
 
   const index = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
+  const showBorder = props.showBorder;
+  let liStyle = Object.assign({}, props.liStyle), liStyleNoTopBorder = Object.assign({}, props.liStyle);
+  if (props.showBorder) {
+    Object.assign(liStyle, {borderTop:'solid 1px rgb(220, 220, 220)'})
+  }
 
   if (props.clustering) {
     list.forEach(item => {
@@ -54,7 +61,7 @@ function ListWithTag(props: ListWithTagProps) {
       if (el.classList.contains('single-contact') || el.classList.contains('single-record')) {
         break;
       }
-      el = (el.parentNode as HTMLElement)
+      el = (el.parentNode as HTMLElement);
     }
     if (el.classList.contains('single-contact') || el.classList.contains('single-record')) {
       let id = el.dataset.id;
@@ -74,8 +81,8 @@ function ListWithTag(props: ListWithTagProps) {
         <ul className={`list ${showList ? 'show' : 'hide'}`}>
           {
             !props.clustering ? (
-              list.map(item => (
-                <li key={item.id}>{item.ele}</li>
+              list.map((item, index) => (
+                <li key={item.id} style={index > 0 ? liStyle : liStyleNoTopBorder}>{item.ele}</li>
               ))
             ) : (
               index.split('').map(letter => {
@@ -87,7 +94,7 @@ function ListWithTag(props: ListWithTagProps) {
                         {
                           (clusteringList.get(letter) as listItem[]).map((item) => {
                             return (
-                              <li key={item.id}>{item.ele}</li>
+                              <li key={item.id} style={liStyle}>{item.ele}</li>
                             )
                           })
                         }

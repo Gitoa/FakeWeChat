@@ -6,9 +6,24 @@ import './index.scss';
 
 function NavBar(props: {navItem: NavBarItem[]}) {
   const { state: admin } = useContext(AdminContext);
+
+  function logout() {
+    console.log('logout');
+    fetch("/logout?user_id=" + admin.id).then(response => {
+      if (response.ok || response.status === 304) {
+        return response.json()
+      }
+      throw new Error('Network reponse was not ok');
+    }).then(ack => {
+      window.location.href = "/signin";
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   return (
     <div className='nav-bar'>
-      <div className='avatar-wrapper' style={{backgroundImage: admin.avatar?`url(${admin.avatar})`:''}}>
+      <div className='avatar-wrapper' style={{backgroundImage: admin.avatar?`url(http://localhost:3080${admin.avatar})`:'url(http://localhost:3080/static/img/default.jpg)'}}>
       </div>
       <div className='nav-wrapper'>
         {
@@ -25,7 +40,7 @@ function NavBar(props: {navItem: NavBarItem[]}) {
       </div>
       <div className='operation-wrapper'>
         <div className='iconfont'>
-          <i className='icon-setting'></i>
+          <i className='icon-setting' onClick={logout}></i>
         </div>
       </div>
     </div>

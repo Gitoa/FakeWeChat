@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { NavBarData } from 'common/js/config';
 import NavBar from 'components/nav_bar';
-import MiddleHeader from 'components/middle-header';
-import NewsList from 'components/news-list';
+import MiddleHeader from 'components/middle_header';
+import NewsList from 'components/news_list';
 import Contact from 'components/contact';
-import Chat from 'components/chat';
+import NewsChat from 'components/news_chat';
+import StrangerChat from 'components/stranger_chat';
 import ContactCard from 'components/contact_card';
 import { getLocalNews, getMockNewsList } from 'common/js/cache';
+import MiniCard from 'base/mini_card';
+import OnlineSearchBox from 'base/online_search_box';
+import Mask from 'base/Mask';
+import { Context as MiniCardContext } from 'store/mini_card';
+import { changeMiniCard } from 'store/mini_card/action';
+import { initState as initMiniCard } from 'store/mini_card/reducer';
 
 import './index.scss';
 
 function WeChat () {
+  const [ keyword, setKeyword ] = useState('');
+  const { state: miniCardState, dispatch } = useContext(MiniCardContext);
+  const [ onlineSearch, setOnlineSearch ] = useState(false);
+
   return (
     <div className='wechat'>
       <Router>
@@ -20,17 +31,28 @@ function WeChat () {
         </div>
         <div className='middle-wrapper'>
           <div className='header-wrapper'>
-            <MiddleHeader></MiddleHeader>
+            <MiddleHeader changeKeyword={(keyword) => {setKeyword(keyword)}} buttonCb={() => {setOnlineSearch(!onlineSearch)}}></MiddleHeader>
           </div>
           <div className='content-wrapper'>
-            <Route path='/news' component={ NewsList }></Route>
-            <Route path='/contact' component={ Contact }></Route>
+            <Route path='/news' render={() => <NewsList keyword={keyword}></NewsList>}></Route>
+            <Route path='/contact' render={() => <Contact keyword={keyword}></Contact>}></Route>
           </div>
         </div>
         <div className='right-wrapper'>
-          <ContactCard></ContactCard>
+          <Route path='/news' component={ NewsChat }></Route>
+          <Route path='/contact' component={ ContactCard }></Route>
+          <Route path='/recommend' component={ StrangerChat }></Route>
+          <Redirect path='/' to={{pathname: '/news'}}></Redirect>
         </div>
       </Router>
+      <div className={`mini-card-wrapper ${miniCardState && miniCardState.id !== '-1' ? 'show' : 'hide'}`}>
+        <Mask maskStyle={{zIndex: 9999}} cb={() => {dispatch(changeMiniCard(initMiniCard))}}></Mask>
+        <MiniCard { ...miniCardState } closeCb={() => {dispatch(changeMiniCard(initMiniCard)); setOnlineSearch(false)}}></MiniCard>
+      </div>
+      <div className={`online-search-box-wrapper ${onlineSearch ? 'show' : 'hide'}`}>
+        <Mask cb={() => {setOnlineSearch(false)}}></Mask>
+        <OnlineSearchBox></OnlineSearchBox>
+      </div>
     </div>
   )
 }
